@@ -19,7 +19,9 @@ var canvasBackgroundImage = new createjs.Bitmap("./images/canvas_background.jpg"
     spinImage = new createjs.Bitmap("./images/button_spin.jpg"),
     spinHoverImage = new createjs.Bitmap("./images/button_spin_hover.jpg"),
     logoutHoverImage = new createjs.Bitmap("./images/logout_hover.jpg"),
-    logoutAreaImage = new createjs.Bitmap("./images/logout_area.png");
+    logoutAreaImage = new createjs.Bitmap("./images/logout_area.png"),
+    fullResetHoverImage = new createjs.Bitmap("./images/reset_hover.jpg"),
+    fullResetAreaImage = new createjs.Bitmap("./images/reset_area.png");
 
 
 var blank = 0;
@@ -78,6 +80,10 @@ function init() {
     logoutAreaImage.x = 83;
     logoutAreaImage.y = 736;
     stage.addChild(logoutAreaImage);
+
+    fullResetAreaImage.x = 535;
+    fullResetAreaImage.y = 738;
+    stage.addChild(fullResetAreaImage);
 
     slotMachineImage.x = canvasBackgroundImage.x + 150;
     slotMachineImage.y = canvasBackgroundImage.y + 80;
@@ -145,7 +151,6 @@ function init() {
         updateText();
         stage.update();
     })
-
 
     betOneImage.addEventListener("mouseover", function ()
     {
@@ -244,6 +249,26 @@ function init() {
 
         if (confirm("Progress will be lost, continue?"))
             window.close();
+    })
+
+    fullResetAreaImage.addEventListener("mouseover", function () {
+        stage.addChild(fullResetHoverImage);
+        fullResetHoverImage.x = fullResetAreaImage.x;
+        fullResetHoverImage.y = fullResetAreaImage.y;
+        stage.update();
+    });
+
+    fullResetAreaImage.addEventListener("rollout", function () {
+        stage.removeChild(fullResetHoverImage);
+        stage.update();
+    });
+
+    fullResetAreaImage.addEventListener("click", function () {
+        selectSound.play();
+
+        reset();
+
+        stage.update();
     })
 
     spinImage.addEventListener("mouseover", function ()
@@ -454,7 +479,7 @@ function reset()
 {
     playerBet = 0;
     playerCash = 50;
-    jackpot = 5000;
+    jackpot = 100;
 
     winNumber = 0;
     lossNumber = 0;

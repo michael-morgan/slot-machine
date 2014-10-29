@@ -63,6 +63,8 @@
     <Content Include="images\canvas_background.jpg" />
     <Content Include="images\logout_area.png" />
     <Content Include="images\logout_hover.jpg" />
+    <Content Include="images\reset_area.png" />
+    <Content Include="images\reset_hover.jpg" />
     <Content Include="scripts\app.js.map" />
     <Content Include="scripts\jquery-2.1.1.min.map" />
     <None Include="Web.Debug.config">
