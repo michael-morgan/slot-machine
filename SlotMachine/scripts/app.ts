@@ -1,4 +1,10 @@
-﻿//local variable declarations
+﻿/**
+ * Name: Michael Morgan
+ * Date: October 29th, 2014
+ * app.ts handles all of the games functionality
+ */
+
+/* local variable declarations */
 var stage;
 
 var playerCash = 0, playerBet = 0, playerBet = 0;
@@ -64,17 +70,19 @@ var selectSound = new Audio("./sounds/sound_select.mp3"),
     winSound = new Audio("./sounds/sound_win.mp3"),
     loseSound = new Audio("./sounds/sound_lose.mp3");
 
-function init() {
+/* init function handles everything that needs to be initialized on application run */
+function init()
+{
     stage = new createjs.Stage(document.getElementById("canvas"));
 
     createjs.Ticker.setFPS(60);
     stage.enableMouseOver(20);
 
-    //assignment initial values
+    /* Assign initial values */
     playerCash = 50;
     jackpot = 100;
 
-    //setup stage
+    /* Setup the stage */
     stage.addChild(canvasBackgroundImage);
 
     logoutAreaImage.x = 83;
@@ -128,7 +136,7 @@ function init() {
     stage.update();
     createjs.Ticker.addEventListener("tick", handleTick);
 
-    //add event listeners for resetImage
+    /* Add event listeners for images */
     resetImage.addEventListener("mouseover", function ()
     {
         stage.addChild(resetHoverImage);
@@ -304,12 +312,14 @@ function init() {
 
 }
 
+/* handleTick function is called on every frame */
 function handleTick()
 {
     stage.update();
     updateText();
 }
 
+/* updateText function refreshes the text on screen */
 function updateText()
 {
     playerBetText.text = playerBet.toString();
@@ -317,7 +327,7 @@ function updateText()
     jackpotText.text = jackpot.toString();
 }
 
-/* Utility function to check if a value falls within a range of bounds */
+/* checkRange function checks if a value falls within a range of bounds */
 function checkRange(value, lowerBounds, upperBounds)
 {
     if (value >= lowerBounds && value <= upperBounds)
@@ -326,9 +336,9 @@ function checkRange(value, lowerBounds, upperBounds)
         return !value;
 }
 
-/* When this function is called it determines the betLine results.
-e.g. Bar - Orange - Banana */
-function spin() {
+/* spin function determines the betLine results */
+function spin()
+{
     var betLine = [" ", " ", " "];
     var outCome = [0, 0, 0];
 
@@ -380,7 +390,7 @@ function spin() {
     return betLine;
 }
 
-/* This function calculates the player's winnings, if any */
+/* calculateWinnings function calculates the player's winnings */
 function calculateWinnings()
 {
     if (blank == 0)
@@ -428,6 +438,7 @@ function calculateWinnings()
     }
 }
 
+/* checkJackpot function checks if the user won the jackpot */
 function checkJackpot()
 {
     var jackPotTry = Math.floor(Math.random() * 51 + 1);
@@ -442,6 +453,7 @@ function checkJackpot()
     }
 }
 
+/* won function is called when player won */
 function won()
 {
     resultText.text = "Won: Enjoy the $" + winnings + " winnings.";
@@ -453,6 +465,7 @@ function won()
     resetTurn();
 }
 
+/* lost function is called when player lost */
 function lost()
 {
     loseSound.play();
@@ -463,6 +476,7 @@ function lost()
     resetTurn();
 }
 
+/* resetFruitCount function resets the total fruit counts */
 function resetFruitCount()
 {
     blank = 0;
@@ -475,6 +489,7 @@ function resetFruitCount()
     seven = 0;
 }
 
+/* reset function resets the game to initial state */
 function reset()
 {
     playerBet = 0;
@@ -491,6 +506,7 @@ function reset()
     updateText();
 }
 
+/* resetTurn function sets the players bet back to 0 */
 function resetTurn()
 {
     playerBet = 0;
