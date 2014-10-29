@@ -1,7 +1,10 @@
 ﻿/**
+ * app.ts
  * Name: Michael Morgan
- * Date: October 29th, 2014
- * app.ts handles all of the games functionality
+ * Last Modified By: Micael Morgan
+ * Last Modified: October 29th, 2014
+ * app.ts handles all of the slot machines functionality at run-time
+ * Revision: 1.8
  */
 
 /* local variable declarations */
